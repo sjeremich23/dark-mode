@@ -9,16 +9,12 @@ export const useLocalStorage = (key, initialValue) => {
     return item ? JSON.parse(item) : initialValue;
   });
 
-  setValue = value => {
+  const setValue = value => {
     // Save State
     setStoredValue(value);
 
     // Save to Local Storage
     window.localStorage.setItem(key, JSON.stringify(value));
-  }
-  useEffect(() => {
-    darkMode ? body.classList.add('dark-mode') : body.classList.remove('dark-mode')
-}, [darkMode])
-
-return [darkMode, setDarkMode]
-}
+  };
+  return [storedValue, setValue];
+};
